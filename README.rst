@@ -6,6 +6,10 @@ django-asset-definitions
     :target: https://circleci.com/gh/andreyfedoseev/django-asset-definitions
     :alt: Build Status
 
+.. image:: https://codecov.io/github/andreyfedoseev/django-asset-definitions/coverage.svg?branch=master
+    :target: https://codecov.io/github/andreyfedoseev/django-asset-definitions?branch=master
+    :alt: Code Coverage
+
 Asset definitions are collections of static files (JavaScript, CSS) defined in Python code and (re)used in Django views
 and templates.
 
