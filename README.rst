@@ -2,6 +2,10 @@
 django-asset-definitions
 ========================
 
+.. image:: https://circleci.com/gh/andreyfedoseev/django-asset-definitions.svg?style=shield
+    :target: https://circleci.com/gh/andreyfedoseev/django-asset-definitions
+    :alt: Build Status
+
 Asset definitions are collections of static files (JavaScript, CSS) defined in Python code and (re)used in Django views
 and templates.
 
