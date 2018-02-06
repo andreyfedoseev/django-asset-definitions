@@ -5,6 +5,19 @@ import re
 import sys
 
 
+if sys.version_info.major == 2:
+    install_requires = [
+        "typing",
+        "Django>=1.8,<2.0",
+    ]
+elif sys.version_info.major == 3:
+    install_requires = [
+        "Django>=1.8",
+    ]
+else:
+    raise AssertionError()
+
+
 class PyTest(TestCommand):
     user_options = [('pytest-args=', 'a', "Arguments to pass to py.test")]
 
@@ -66,10 +79,7 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
     ],
     keywords=[],
-    install_requires=[
-        "typing",
-        "Django>=1.8",
-    ],
+    install_requires=install_requires,
     tests_require=[
         "pytest",
         "pytest-django",
