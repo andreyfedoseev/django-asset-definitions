@@ -12,5 +12,4 @@ jobs:
       - run: flake8 ./src
       - run: rm -f coverage.xml
       - run: tox
-      - run: cat coverage.xml
       - run: codecov
