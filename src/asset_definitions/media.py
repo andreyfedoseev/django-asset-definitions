@@ -1,4 +1,7 @@
 import django.forms
+import django.forms.widgets
+import django.utils.html
+import django.utils.safestring
 from typing import *  # noqa
 
 
@@ -38,6 +41,23 @@ class Media(django.forms.Media):
         for other_media in self._combined_with:
             media.add_css(other_media._css)
         return media._css
+
+    def render_js(self):
+        return [
+            django.utils.safestring.mark_safe(js)
+            if js.startswith("<script")
+            else django.utils.html.format_html(
+                '<script type="text/javascript" src="{}"></script>',
+                self.absolute_path(js)
+            )
+            for js in self._js
+        ]
+
+    def __getitem__(self, name):
+        "Returns a Media object that only contains media of the given type"
+        if name in django.forms.widgets.MEDIA_TYPES:
+            return Media(**{str(name): getattr(self, '_' + name)})
+        raise KeyError('Unknown media type "%s"' % name)
 
     def __add__(self, other):
         # type: (django.forms.Media) -> Media

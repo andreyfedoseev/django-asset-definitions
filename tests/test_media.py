@@ -90,3 +90,16 @@ def test_combine_with_django_forms_media():
         """<script type="text/javascript" src="/static/foo.js"></script>\n"""
         """<script type="text/javascript" src="/static/bar.js"></script>"""
     )
+
+
+def test_inline_js():
+    media = asset_definitions.Media(
+        js=(
+            "<script>let a = 1;</script>",
+            "foo.js",
+        )
+    )
+    assert media.render() == media["js"].render() == (
+        """<script>let a = 1;</script>\n"""
+        """<script type="text/javascript" src="/static/foo.js"></script>"""
+    )
