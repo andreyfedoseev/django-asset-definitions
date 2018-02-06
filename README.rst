@@ -40,6 +40,7 @@ Define:
   my_media = asset_definitions.Media(
       js=(
           "media.js",
+          """<script>window.addEventListener("load", function() {console.log("Loaded!");});</script>""",
       ),
       css={
           "all": (
