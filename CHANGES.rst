@@ -2,7 +2,7 @@
 Changes
 =======
 
-Dev
+0.3
 ===
 
  - Add Django 2.0 compatibility
