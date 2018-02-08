@@ -12,16 +12,6 @@ def test_js():
         """<script type="text/javascript" src="/static/foo.js"></script>"""
     )
 
-    media.add_js((
-        "foo.js",
-        "bar.js",
-    ))
-
-    assert media.render() == media["js"].render() == (
-        """<script type="text/javascript" src="/static/foo.js"></script>\n"""
-        """<script type="text/javascript" src="/static/bar.js"></script>"""
-    )
-
 
 def test_css():
     media = asset_definitions.Media(
@@ -39,37 +29,37 @@ def test_css():
         """<link href="/static/print.css" type="text/css" media="print" rel="stylesheet" />"""
     )
 
-    media.add_css({
-        "all": (
-            "all.css",
-            "foo.css",
-        )
-    })
-
-    assert media.render() == media["css"].render() == (
-        """<link href="/static/all.css" type="text/css" media="all" rel="stylesheet" />\n"""
-        """<link href="/static/foo.css" type="text/css" media="all" rel="stylesheet" />\n"""
-        """<link href="/static/print.css" type="text/css" media="print" rel="stylesheet" />"""
-    )
-
 
 def test_combined():
     media_1 = asset_definitions.Media(
         js=(
             "foo.js",
-        )
-    )
-    media_2 = asset_definitions.Media(
+            "bar.js",
+        ),
         css={
             "all": (
                 "all.css",
             ),
         }
     )
+    media_2 = asset_definitions.Media(
+        js=(
+            "bar.js",
+            "bazz.js",
+        ),
+        css={
+            "print": (
+                "print.css",
+            ),
+        }
+    )
     combined_media = media_1 + media_2
     assert combined_media.render() == (
         """<link href="/static/all.css" type="text/css" media="all" rel="stylesheet" />\n"""
-        """<script type="text/javascript" src="/static/foo.js"></script>"""
+        """<link href="/static/print.css" type="text/css" media="print" rel="stylesheet" />\n"""
+        """<script type="text/javascript" src="/static/foo.js"></script>\n"""
+        """<script type="text/javascript" src="/static/bar.js"></script>\n"""
+        """<script type="text/javascript" src="/static/bazz.js"></script>"""
     )
 
 

@@ -78,7 +78,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Topic :: Internet :: WWW/HTTP',
     ],
-    keywords=[],
+    keywords=["django", ],
     install_requires=install_requires,
     tests_require=[
         "pytest",
