@@ -2,6 +2,12 @@
 Changes
 =======
 
+Dev
+===
+
+ - Add Django 2.0 compatibility
+ - Extract ``MediaDefiningClass`` base class from ``MediaDefiningView``
+
 0.2
 ===
 
