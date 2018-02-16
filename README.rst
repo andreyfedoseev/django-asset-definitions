@@ -69,10 +69,10 @@ Define in views:
   class MyView(asset_definitions.MediaDefiningView, ...):
 
       class Media:
-          js=(
+          js = (
               "media.js",
-          ),
-          css={
+          )
+          css = {
               "all": (
                   "media.css",
               ),
@@ -147,7 +147,7 @@ Example:
 
       class Media:
           js = ("media.js", )
-          css = {"all": ("media.css", media)
+          css = {"all": ("media.css", )}
 
       def get_media():
           return (
