@@ -3,13 +3,10 @@ from typing import *  # noqa
 
 import asset_definitions
 
-__all__ = (
-    "MediaDefiningView",
-)
+__all__ = ("MediaDefiningView",)
 
 
 class MediaDefiningView(asset_definitions.MediaDefiningClass):
-
     def get_media(self):
         # type: () -> asset_definitions.Media
         media = super(MediaDefiningView, self).get_media()

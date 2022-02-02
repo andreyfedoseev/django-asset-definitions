@@ -14,7 +14,6 @@ __all__ = (
 # noinspection PyProtectedMember
 # noinspection PyMissingConstructor
 class Media(django.forms.Media):
-
     def __init__(self, **kwargs):
         self._media = django.forms.Media(**kwargs)
         self._combined_with = []
@@ -43,14 +42,14 @@ class Media(django.forms.Media):
             if js.lstrip().startswith("<script")
             else django.utils.html.format_html(
                 '<script type="text/javascript" src="{}"></script>',
-                self.absolute_path(js)
+                self.absolute_path(js),
             )
             for js in self._js
         ]
 
     def __getitem__(self, name):
         if name in django.forms.widgets.MEDIA_TYPES:
-            return Media(**{str(name): getattr(self, '_' + name)})
+            return Media(**{str(name): getattr(self, "_" + name)})
         raise KeyError('Unknown media type "%s"' % name)
 
     def __add__(self, other):
@@ -61,7 +60,6 @@ class Media(django.forms.Media):
 
 
 class MediaDefiningClass(object):
-
     @property
     def media(self):
         return self.get_media()
