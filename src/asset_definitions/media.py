@@ -1,4 +1,4 @@
-from typing import *  # noqa
+from typing import Optional
 
 import django.forms
 import django.forms.widgets
@@ -52,8 +52,7 @@ class Media(django.forms.Media):
             return Media(**{str(name): getattr(self, "_" + name)})
         raise KeyError('Unknown media type "%s"' % name)
 
-    def __add__(self, other):
-        # type: (django.forms.Media) -> Media
+    def __add__(self, other: django.forms.Media) -> "Media":
         media = Media(js=self._media._js, css=self._media._css)
         media._combined_with = self._combined_with + [other]
         return media
@@ -64,12 +63,10 @@ class MediaDefiningClass(object):
     def media(self):
         return self.get_media()
 
-    def get_media(self):
-        # type: () -> Media
+    def get_media(self) -> Media:
         return self._get_media_from_definition() or Media()
 
-    def _get_media_from_definition(self):
-        # type: () -> Optional[Media]
+    def _get_media_from_definition(self) -> Optional[Media]:
         definition = getattr(self.__class__, "Media", None)
         if definition:
             return Media(media=definition)
