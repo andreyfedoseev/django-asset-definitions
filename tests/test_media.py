@@ -1,5 +1,6 @@
-import asset_definitions
 import django.forms
+
+import asset_definitions
 
 
 def test_js():
@@ -18,7 +19,7 @@ def test_css():
         == media["css"].render()
         == (
             """<link href="/static/all.css" type="text/css" media="all" rel="stylesheet">\n"""
-            """<link href="/static/print.css" type="text/css" media="print" rel="stylesheet" />"""
+            """<link href="/static/print.css" type="text/css" media="print" rel="stylesheet">"""
         )
     )
 
@@ -44,8 +45,8 @@ def test_combined():
     )
     combined_media = media_1 + media_2
     assert combined_media.render() == (
-        """<link href="/static/all.css" type="text/css" media="all" rel="stylesheet" />\n"""
-        """<link href="/static/print.css" type="text/css" media="print" rel="stylesheet" />\n"""
+        """<link href="/static/all.css" type="text/css" media="all" rel="stylesheet">\n"""
+        """<link href="/static/print.css" type="text/css" media="print" rel="stylesheet">\n"""
         """<script type="text/javascript" src="/static/foo.js"></script>\n"""
         """<script type="text/javascript" src="/static/bar.js"></script>\n"""
         """<script type="text/javascript" src="/static/bazz.js"></script>"""

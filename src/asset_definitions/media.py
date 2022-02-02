@@ -1,9 +1,9 @@
+from typing import *  # noqa
+
 import django.forms
 import django.forms.widgets
 import django.utils.html
 import django.utils.safestring
-from typing import *  # noqa
-
 
 __all__ = (
     "Media",

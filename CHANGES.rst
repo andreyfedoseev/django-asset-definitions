@@ -2,6 +2,13 @@
 Changes
 =======
 
+0.4
+===
+
+ - Add Django 3.x and 4.x compatibility
+ - Drop support for Python 2
+ - Python 3.6 is the minimum requirement
+
 0.3
 ===
 
