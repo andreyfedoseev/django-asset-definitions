@@ -1,5 +1,6 @@
-import django.forms  # noqa
 from typing import *  # noqa
+
+import django.forms  # noqa
 
 import asset_definitions
 

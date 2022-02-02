@@ -5,21 +5,8 @@ import re
 import sys
 
 
-if sys.version_info.major == 2:
-    install_requires = [
-        "typing",
-        "Django>=1.8,<2.0",
-    ]
-elif sys.version_info.major == 3:
-    install_requires = [
-        "Django>=1.8",
-    ]
-else:
-    raise AssertionError()
-
-
 class PyTest(TestCommand):
-    user_options = [('pytest-args=', 'a', "Arguments to pass to py.test")]
+    user_options = [("pytest-args=", "a", "Arguments to pass to py.test")]
 
     def initialize_options(self):
         TestCommand.initialize_options(self)
@@ -33,28 +20,31 @@ class PyTest(TestCommand):
     def run_tests(self):
         # import here, cause outside the eggs aren't loaded
         import pytest
+
         errno = pytest.main(self.pytest_args)
         sys.exit(errno)
 
 
 def read(fname):
     path = os.path.join(os.path.dirname(__file__), fname)
-    if sys.version < '3':
+    if sys.version < "3":
         return open(path).read()
     return open(path, encoding="utf-8").read()
 
 
-README = read('README.rst')
-CHANGES = read('CHANGES.rst')
+README = read("README.rst")
+CHANGES = read("CHANGES.rst")
 
 
 version = ""
 
 with open("src/asset_definitions/__init__.py") as fd:
-    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE).group(1)
+    version = re.search(
+        r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE
+    ).group(1)
 
 if not version:
-    raise RuntimeError('Cannot find version information')
+    raise RuntimeError("Cannot find version information")
 
 
 setup(
@@ -66,25 +56,28 @@ setup(
     author_email="andrey.fedoseev@gmail.com",
     url="https://github.com/andreyfedoseev/django-asset-definitions",
     description="django-asset-definitions allows to define collections of static files (JavaScript, CSS) in Python "
-                "code and (re)use them in Django views and templates.",
+    "code and (re)use them in Django views and templates.",
     long_description="\n\n".join([README, CHANGES]),
     classifiers=[
-        'Development Status :: 4 - Beta',
-        'Framework :: Django',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 3',
-        'Topic :: Internet :: WWW/HTTP',
+        "Development Status :: 4 - Beta",
+        "Framework :: Django",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: BSD License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
+        "Topic :: Internet :: WWW/HTTP",
     ],
-    keywords=["django", ],
-    install_requires=install_requires,
+    keywords=[
+        "django",
+    ],
+    python_requires=">=3.6",
+    install_requires=[
+        "Django>=2.0",
+    ],
     tests_require=[
         "pytest",
         "pytest-django",
     ],
-    cmdclass={
-        "test": PyTest
-    },
+    cmdclass={"test": PyTest},
 )
