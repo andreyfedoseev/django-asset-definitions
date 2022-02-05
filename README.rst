@@ -2,13 +2,10 @@
 django-asset-definitions
 ========================
 
-.. image:: https://circleci.com/gh/andreyfedoseev/django-asset-definitions.svg?style=shield
-    :target: https://circleci.com/gh/andreyfedoseev/django-asset-definitions
-    :alt: Build Status
+.. image:: https://github.com/andreyfedoseev/django-asset-definitions/actions/workflows/main.yml/badge.svg
+    :target: https://github.com/andreyfedoseev/django-asset-definitions/actions/workflows/main.yml
+    :alt: Tests Status
 
-.. image:: https://codecov.io/github/andreyfedoseev/django-asset-definitions/coverage.svg?branch=master
-    :target: https://codecov.io/github/andreyfedoseev/django-asset-definitions?branch=master
-    :alt: Code Coverage
 
 Asset definitions are collections of static files (JavaScript, CSS) defined in Python code and (re)used in Django views
 and templates.
@@ -118,7 +115,7 @@ See an extended example below.
    the result is computed only when media is rendered. It is safe to use ``reverse_lazy()`` with
    ``asset_definitions.Media``. It is important if you define your assets on a module level.
 4. ``Media`` class in ``MediaDefiningView`` does not support ``extend`` option. To add to the media defined in a parent
-   view class, you should override ``get_media`` method and use ``super(MyView, self).get_media()``.
+   view class you should override ``get_media`` method and use ``super(MyView, self).get_media()``.
 
 Example:
 ========
