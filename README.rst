@@ -114,11 +114,11 @@ See an extended example below.
 1. ``asset_definitions.Media`` provides the same API as ``django.forms.Media``. In fact, it is inherited from
    ``django.forms.Media``.
 2. It is safe to combine ``asset_definitions.Media`` with ``django.forms.Media``.
-3. ``asset_definitions.Media`` objects are lazy. If two or more instances of ``asset_definitions.Media`` are combined
-   together the result is computed only when media is rendered. It is safe to use ``reverse_lazy()`` with
-   ``asset_definitions.Media``. It is important if you define your assets on module level.
-4. ``Media`` class in ``MediaDefiningView`` does not support ``extend`` option. To add to the media defined in parent
-   view class you should override ``get_media`` method and use ``super(MyView, self).get_media()``.
+3. ``asset_definitions.Media`` objects are lazy. If two or more instances of ``asset_definitions.Media`` are combined,
+   the result is computed only when media is rendered. It is safe to use ``reverse_lazy()`` with
+   ``asset_definitions.Media``. It is important if you define your assets on a module level.
+4. ``Media`` class in ``MediaDefiningView`` does not support ``extend`` option. To add to the media defined in a parent
+   view class, you should override ``get_media`` method and use ``super(MyView, self).get_media()``.
 
 Example:
 ========
