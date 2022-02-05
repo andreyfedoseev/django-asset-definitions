@@ -11,7 +11,7 @@ upload:
 	python3 setup.py sdist upload
 
 check-flake8:
-	docker-compose run --rm app flake8
+	docker-compose run --rm app flake8 ./src ./tests
 
 check-black:
 	docker-compose run --rm app black --check ./src ./tests
